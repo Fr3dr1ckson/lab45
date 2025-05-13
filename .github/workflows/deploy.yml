@@ -24,4 +24,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: fr3dr1ckson/lab45:latest
+          tags: ${{ secrets.DOCKER_USERNAME }}/lab45:latest

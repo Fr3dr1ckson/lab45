@@ -24,4 +24,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: your_dockerhub_username/my-web-app:latest
+          tags: fr3dr1ckson/lab45:latest

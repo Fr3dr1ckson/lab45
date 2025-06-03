@@ -26,3 +26,4 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/lab45:latest
           no-cache: true
+          provenance: false

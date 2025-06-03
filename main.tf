@@ -44,6 +44,26 @@ resource "aws_instance" "web_server" {
   vpc_security_group_ids      = [aws_security_group.web_sg.id]
   associate_public_ip_address = true
 
+  user_data = <<-EOF
+              #!/bin/bash
+              apt-get update
+              apt-get install -y docker.io
+              systemctl start docker
+              systemctl enable docker
+
+              # Run your Docker image
+              docker run -d --name myapp -p 80:80 fr3dr1ckson/lab45:latest
+
+              # Run Watchtower with 60s interval
+              docker run -d \
+                --name watchtower \
+                --restart always \
+                -v /var/run/docker.sock:/var/run/docker.sock \
+                containrrr/watchtower \
+                --interval 60 \
+                --cleanup
+              EOF
+
   tags = {
     Name = "Lab45Instance"
   }

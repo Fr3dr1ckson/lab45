@@ -12,7 +12,6 @@ terraform {
 
 resource "aws_key_pair" "deployer" {
   key_name   = "lab45"
-  public_key = file("lab45.pub") # обов'язково мати цей файл поруч
 }
 
 resource "aws_security_group" "web_sg" {

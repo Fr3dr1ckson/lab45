@@ -46,16 +46,18 @@ resource "aws_instance" "web_server" {
 
   user_data = <<-EOF
               #!/bin/bash
-              apt-get update
-              apt-get install -y docker.io
+              sudo apt-get update
+              sudo apt-get install -y docker.io
+              sudo systemctl stop nginx
+              sudo systemctl disable nginx
               systemctl start docker
               systemctl enable docker
 
               # Run your Docker image
-              docker run -d --name iit_lab_6 -p 80:80 fr3dr1ckson/lab45:latest
+              sudo docker run -d --name iit_lab_6 -p 80:80 fr3dr1ckson/lab45:latest
 
               # Run Watchtower with 60s interval
-              docker run -d \
+              sudo docker run -d \
                 --name watchtower \
                 --restart always \
                 -v /var/run/docker.sock:/var/run/docker.sock \

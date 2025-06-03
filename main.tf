@@ -31,8 +31,8 @@ resource "aws_security_group" "web_sg" {
 
 resource "aws_instance" "web_server" {
   ami                         = "ami-05d3e0186c058c4dd" 
-  instance_type               = "t2.micro"
-  key_name                    = "lab45"
+  instance_type               = "t3.micro"
+  key_name                    = "lab6"
   vpc_security_group_ids      = [aws_security_group.web_sg.id]
   associate_public_ip_address = true
 

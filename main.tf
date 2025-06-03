@@ -10,10 +10,6 @@ terraform {
   }
 }
 
-resource "aws_key_pair" "deployer" {
-  key_name   = "lab45"
-}
-
 resource "aws_security_group" "web_sg" {
   name        = "lab45-web-sg"
   description = "Allow HTTP inbound traffic"
@@ -36,7 +32,7 @@ resource "aws_security_group" "web_sg" {
 resource "aws_instance" "web_server" {
   ami                         = "ami-05d3e0186c058c4dd" 
   instance_type               = "t2.micro"
-  key_name                    = aws_key_pair.deployer.key_name
+  key_name                    = "lab45"
   vpc_security_group_ids      = [aws_security_group.web_sg.id]
   associate_public_ip_address = true
 
